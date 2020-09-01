@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      #canvas {
+        width: 700px;
+        height: 400px;
+      }
+    </style>
+
+    <link rel="stylesheet" href="./dropArea/style.css" />
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+
+    <a href="/monsters.html">Monsters</a>
+
+		<section id="drop-area"></section>
+		
+    <script type="module">
+      import { initProject } from "./scripts/init.js";
+      import {
+        handleDrop,
+        removeUselessEvents
+      } from "./dropArea/dragAndDrop.js";
+
+      const canvas = document.getElementById("canvas");
+
+      initProject(canvas, "./models/Ring2.glb", "Rings");
+
+			// Event
+      const dropArea = document.getElementById("drop-area");
+
+      removeUselessEvents(dropArea);
+      dropArea.addEventListener(
+        "drop",
+        e => handleDrop(e, initProject),
+        false
+      );
+    </script>
+  </body>
+</html>

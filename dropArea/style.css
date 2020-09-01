@@ -1,0 +1,27 @@
+body {
+  font-family: sans-serif;
+}
+
+a {
+  color: #369;
+}
+
+.note {
+  width: 500px;
+  margin: 50px auto;
+  font-size: 1.1em;
+  color: #333;
+  text-align: justify;
+}
+
+#drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  width: 480px;
+  height: 150px;
+  padding: 20px;
+}
+
+#drop-area.highlight {
+  border-color: blue;
+}
