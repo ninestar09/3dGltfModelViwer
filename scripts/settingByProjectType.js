@@ -14,7 +14,8 @@ export const settingByProjectType = {
     needShadow: true,
     needFloor: true,
     needDirectionalLight: true,
-    NeedHemisphereLight: true
+    needHemisphereLight: true,
+    needEnvironment: false
   },
 
   "Rings": {
@@ -32,6 +33,7 @@ export const settingByProjectType = {
     needShadow: false,
     needFloor: false,
     needDirectionalLight: false,
-    NeedHemisphereLight: false
+    needHemisphereLight: false,
+    needEnvironment: true
   },
 }

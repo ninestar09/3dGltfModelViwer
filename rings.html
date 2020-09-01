@@ -10,6 +10,10 @@
         width: 700px;
         height: 400px;
       }
+
+      #loading {
+        display: none;
+      }
     </style>
 
     <link rel="stylesheet" href="./dropArea/style.css" />
@@ -20,9 +24,11 @@
     <a href="/monsters.html">Monsters</a>
 
     <section id="drop-area"></section>
+
+    <p id="loading">Loading...</p>
     
-    <p id="class1"></p>
-    <p id="class2"></p>
+    <p id="accessory-class"></p>
+    <p id="shank-class"></p>
 		
     <script type="module">
       import { initProject } from "./scripts/init.js";
@@ -30,7 +36,7 @@
         handleDrop,
         removeUselessEvents
       } from "./dropArea/dragAndDrop.js";
-
+      
       const canvas = document.getElementById("canvas");
 
       initProject(canvas, "./models/Ring2.glb", "Rings");
@@ -41,7 +47,7 @@
       removeUselessEvents(dropArea);
       dropArea.addEventListener(
         "drop",
-        e => handleDrop(e, initProject),
+        e => handleDrop(e, initProject, canvas),
         false
       );
     </script>

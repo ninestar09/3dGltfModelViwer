@@ -1,6 +1,10 @@
-export function handleDrop(e, initProject) {
-  const class1 = document.getElementById("class1");
-  const class2 = document.getElementById("class2");
+export function handleDrop(e, initProject, canvas) {
+  const accessoryClass = document.getElementById("accessory-class");
+  const shankClass = document.getElementById("shank-class");
+  const loading = document.getElementById("loading");
+  accessoryClass.textContent = "";
+  shankClass.textContent = "";
+  loading.style.display = "block";
 
   const file = e.dataTransfer.files[0];
 
@@ -23,17 +27,17 @@ export function handleDrop(e, initProject) {
 
       let reader = new FileReader();
       reader.onload = e => {
-        const parsedToArrayBufferModel = e.target.result;
-
-        initProject(canvas, parsedToArrayBufferModel, "Rings");
-        class1.textContent = "";
-        class2.textContent = "";
+        const parsedModel = e.target.result;
+        initProject(canvas, parsedModel, "Rings");
+        accessoryClass.textContent = `accessory class = ${jsonObject["accessory_class"]}`;
+        shankClass.textContent = `shank class = ${jsonObject["shank_class"]}`;
       }
 
       reader.readAsDataURL(jsonObject.mesh);
 
     })
-    .catch(error => alert(error));
+    .catch(error => alert(error))
+    .finally(() => loading.style.display = "none");
 
 }
 

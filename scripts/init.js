@@ -4,22 +4,31 @@ import { GLTFLoader } from 'https://threejsfundamentals.org/threejs/resources/th
 import { RGBELoader } from "https://threejsfundamentals.org/threejs/resources/threejs/r119/examples/jsm/loaders/RGBELoader.js";
 
 import { setUp } from "./settings.js";
-import { load3dModel, createFloor } from "./objects.js";
+import { load3dModel } from "./objects.js";
 import { updateProjection } from "./responsive.js";
 import { updateMixer } from "./animateMonster.js";
 import { settingByProjectType } from "./settingByProjectType.js";
 
+let renderer, scene, camera, GltfLoader;
+
 export function initProject(canvas, model, projectType) {
-  const { renderer, scene, camera, GltfLoader } = setUp({
-    THREE,
-    OrbitControls,
-    GLTFLoader,
-    RGBELoader
-  }, {
-    canvas,
-    projectType,
-    settingByProjectType
-  });
+  if (!renderer || !scene || !camera || !GltfLoader) {
+    const setUpRes = setUp({
+      THREE,
+      OrbitControls,
+      GLTFLoader,
+      RGBELoader
+    }, {
+      canvas,
+      projectType,
+      settingByProjectType
+    });
+
+    renderer = setUpRes.renderer
+    scene = setUpRes.scene
+    camera = setUpRes.camera
+    GltfLoader = setUpRes.GltfLoader
+  }
 
   load3dModel(THREE, {
     loader: GltfLoader,

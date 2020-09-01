@@ -35,7 +35,7 @@ export function setUp(packages, components) {
   function setUpCamera() {
     const fov = 45;
     const aspectRatio = canvasWidth / canvasHeight;
-    const near = 0.1;
+    const near = 0.01;
     const far = 1000;
 
     const camera = new THREE.PerspectiveCamera(fov, aspectRatio, near, far);
@@ -55,7 +55,6 @@ export function setUp(packages, components) {
   // Orbit controls
   function setUpOrbitControls(camera) {
     const orbitControls = new OrbitControls(camera, canvas);
-    orbitControls.enableDamping = true;
 
     settingByProjectType[projectType].orbitControls.target(orbitControls);
 
@@ -84,7 +83,7 @@ export function setUp(packages, components) {
   // Directional light
   function setUpDirectionalLight(scene) {
     const color = 0xFFFFFF;
-    const intensity = 0.8;
+    const intensity = 1;
     const light = new THREE.DirectionalLight(color, intensity);
     light.position.set(0, 5, 0);
     light.target.position.set(-5, 0, 20);
@@ -114,9 +113,9 @@ export function setUp(packages, components) {
     orbitControls = setUpOrbitControls(camera);
 
   if (settingByProjectType[projectType].needDirectionalLight) setUpDirectionalLight(scene);
-  if (settingByProjectType[projectType].NeedHemisphereLight) setUpHemisphereLight(scene);
-
-  setUpCubeMapTexture(renderer, scene);
+  if (settingByProjectType[projectType].needHemisphereLight) setUpHemisphereLight(scene);
+  
+  if (settingByProjectType[projectType].needEnvironment) setUpCubeMapTexture(renderer, scene);;
 
   return {
     renderer,
