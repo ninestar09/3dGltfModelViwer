@@ -1,4 +1,7 @@
 export function handleDrop(e, initProject) {
+  const class1 = document.getElementById("class1");
+  const class2 = document.getElementById("class2");
+
   const file = e.dataTransfer.files[0];
 
   var formData = new FormData();
@@ -23,12 +26,14 @@ export function handleDrop(e, initProject) {
         const parsedToArrayBufferModel = e.target.result;
 
         initProject(canvas, parsedToArrayBufferModel, "Rings");
+        class1.textContent = "";
+        class2.textContent = "";
       }
 
       reader.readAsDataURL(jsonObject.mesh);
 
     })
-    .catch(error => console.log('error', error));
+    .catch(error => alert(error));
 
 }
 
